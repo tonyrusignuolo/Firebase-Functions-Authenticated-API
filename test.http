@@ -1,0 +1,60 @@
+# copy the auth token from Chrome's inspection console after authenticating a user using Live Server
+@token = Bearer 
+
+# paste prject url below. Should look something like http://localhost:5000/project-name/us-central1/api
+@api = test
+
+###
+POST {{api}}/basic/users/create
+authorization: {{token}}
+Content-type:application/json
+
+{
+	"test": "test"
+}
+
+###
+GET {{api}}/basic/users/read/self
+authorization: {{token}}
+
+###
+# add user id to the end of the http call to query users db
+GET {{api}}/basic/users/read/
+authorization: {{token}}
+
+###
+POST {{api}}/basic/users/update
+authorization: {{token}}
+Content-type:application/json
+
+{
+	"test": "test"
+}
+
+###
+POST {{api}}/admin/users/create
+authorization: {{token}}
+Content-type:application/json
+
+{
+	"test": "test"
+}
+
+###
+# add user id or query params to the end of the http call to query users db
+GET {{api}}/admin/users/read/
+authorization: {{token}}
+
+###
+# add user id to the end of the http call to query users db
+POST {{api}}/admin/users/update/
+authorization: {{token}}
+Content-type:application/json
+
+{
+	"test": "test"
+}
+
+###
+# add user id to the end of the http call to delete user from users db
+DELETE {{api}}/admin/users/delete/
